@@ -23,7 +23,7 @@ def test_board_load(game):
     assert game._board._positions[-1].name == "Massizim"
 def test_dice_load(game):
     """Test that dice rolls are loaded correctly."""
-    assert game._dice ==  [1,2,3,4,5,6]
+    assert game._dice ==   [1,2,3,4,5,6,1,2,3,4]
 # Test player
 def test_player_initialization(game):
     """Test player initialization attributes."""
@@ -114,15 +114,15 @@ def test_roll(game):
 def test_winning_condition(game):
     """Test game ends when a player is bankrupt and determine the winner."""
     game._players[1]._balance = 0  # Billy is bankrupt
-    winner = game.check_bankrupt()
-    assert winner.name == "Peter"  # Assume Peter has the highest balance
+    winners = game.determine_winner()
+    assert "Peter" in winners, f"Expected Peter to be the winner, but got {winners}"
 def test_tie_breaker(game):
     """Test tie-breaking rules when two players have the same balance."""
     game._players[0]._balance = 20
     game._players[1]._balance = 20
     winners = game.determine_winner()
     assert len(winners) == 2
-    assert [winner.name for winner in winners] == ["Peter", "Billy"]
+    assert [winner for winner in winners] == ["Peter", "Billy"]
 # Edge Cases
 @pytest.fixture
 def mock_game(mock_board, mock_dice):

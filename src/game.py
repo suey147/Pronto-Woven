@@ -60,6 +60,14 @@ class Game:
             if player.get_balance()<=0:
                 return True
         return False
+    def determine_winner(self):
+        """Determine the winners with the highest balance."""
+        # Find the maximum balance among players
+        max_balance = max(player.get_balance() for player in self._players)
+        # Find all players with the maximum balance
+        winners = [player.name for player in self._players if player.get_balance() == max_balance]
+        return winners
+
     def declare_winner(self):
         """ Print out the winner and balance of all players
         """
@@ -69,10 +77,8 @@ class Game:
             # finish space that player on
             finish_space = self._board.get_property(player.get_current_position()).name
             print(player.name+" end up with: $"+str(player.get_balance())+" at "+ finish_space + "\n")
-            # find the winner
-            if winner is None or winner.get_balance()<player.get_balance():
-                winner = player
-        print("The Winner is "+ winner.name)
+        
+        print("The Winner is "+ ''.join(self.determine_winner()))
     def play_turn(self, steps):
         """ perform action in each turn
         """
