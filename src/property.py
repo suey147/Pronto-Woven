@@ -20,6 +20,13 @@ class Property:
             int: amount of rent
         """
         return self._rent
+    def get_price(self):
+        """getter method of price
+
+        Returns:
+            int: amount of price
+        """
+        return self._price
     def get_owner(self):
         """getter method of owner
 

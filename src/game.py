@@ -99,27 +99,35 @@ class Game:
     def declare_winner(self):
         """ Print out the winner and balance of all players
         """
-        print("Results")
+        print("Results \n")
+        print("-"*40+"\n")
         for player in self._players:
             # finish space that player on
             finish_space = self._board.get_property(player.get_current_position()).name
             print(player.name+" end up with: $"+str(player.get_balance())+" at "+ finish_space + "\n")
         
         print("The Winner is "+ ''.join(self.determine_winner()))
+        print("Details of each turns has saved at records.txt")
     def play_turn(self, steps):
         """ perform action in each turn
         """
         if (steps<=0):
             raise ValueError(f"Rolls {steps} is out of bounds.")
         # Roll the dice and reach new position
-        pass_go = self._current_player.check_pass_go(steps, self._board.get_board_len())
-        new_position = self._current_player.move(steps, self._board.get_board_len())
-        if pass_go:
-            self._current_player.receive(1)
+        action = f"\n{self._current_player.name}'s turn! Rolling dice: {steps} \n"
+        player = self._current_player
+        pass_go = player.check_pass_go(steps, self._board.get_board_len())
+        previous_position = player.get_current_position()
+        new_position = player.move(steps, self._board.get_board_len())
         landed_property = self._board.get_property(new_position)
+        action += f"{player.name} moves from {previous_position} to {new_position} ({landed_property.name})\n"
+        # Get $1 if pass Go
+        if pass_go:
+            player.receive(1)
+            action += f"{player.name} passes GO and earns $1! New balance: ${player.get_balance()}\n"
         # Check if landed on Go
         if landed_property.type == "go":
-            action = "Laned on GO"
+            return
         # Check if the property has owner
         elif landed_property.is_owned():
             # tenant pay rent
@@ -131,13 +139,15 @@ class Game:
             if all(p.get_owner() == owner for p in property_set):
                 rent *= 2
             owner.receive(rent)
-            self._current_player.pay(rent)
-            action = f"{self._current_player.name} paid rent to {owner.name}"
+            player.pay(rent)
+            action += f"{player.name} pays ${rent} rent to {owner.name} for landing on {landed_property.name}.\n"
+            action += f"{player.name}'s new balance: ${player.get_balance()}\n"
+            action += f"{owner.name}'s new balance: ${owner.get_balance()}\n"
         else:
             # Buy property if not owned by anyone
-            self._current_player.buy_property(landed_property)
+            player.buy_property(landed_property)
             landed_property.set_owner(self._current_player)
-            action = f"Bought {landed_property.name}"
+            action += f"{player.name} buys {landed_property.name} for ${landed_property.get_price()}. Remaining balance: ${player.get_balance()}\n"
         # Record turn
         self._turns.append({
             "player": self._current_player.name,
