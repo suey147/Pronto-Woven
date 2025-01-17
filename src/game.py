@@ -61,7 +61,18 @@ class Game:
                 return True
         return False
     def declare_winner(self):
-        pass
+        """ Print out the winner and balance of all players
+        """
+        winner = None
+        print("Results")
+        for player in self._players:
+            # finish space that player on
+            finish_space = self._board.get_property(player.get_current_position()).name
+            print(player.name+" end up with: $"+str(player.get_balance())+" at "+ finish_space + "\n")
+            # find the winner
+            if winner is None or winner.get_balance()<player.get_balance():
+                winner = player
+        print("The Winner is "+ winner.name)
     def play_turn(self):
         """ perform action in each turn
         """
@@ -84,7 +95,6 @@ class Game:
             # Buy property if not owned by anyone
             self._current_player.buy_property(landed_property)
             landed_property.set_owner(self._current_player)
-
     def start_game(self):
         """ start the monopoly game
         """
@@ -96,3 +106,5 @@ class Game:
             self.play_turn()
             self._current_turn += 1
             self._current_player= self._players[self._current_turn%4]
+newGame = Game("./board.json", "./rolls_1.json")
+newGame.start_game()
