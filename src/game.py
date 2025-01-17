@@ -11,24 +11,55 @@ class Game:
         self._current_turn = 0
         self._turns = []
     def get_board(self, board_file_name):
+        """Load the board layout from board.json
+        
+        Args:
+            board_file_name (str): name of the board layout file
+
+        Returns:
+            list: list of property 
+        """
         with open(board_file_name) as file:
             board_data = json.load(file)
         new_board = Board(board_data)
         return new_board
+
     def get_dice(self, dice_file_name):
+        """Load the dice rolls from rolls.json
+
+        Args:
+            dice_file_name (str): name of the rolls file
+
+        Returns:
+            list: list of dice 
+        """
         with open(dice_file_name) as file:
             dice_data = json.load(file)
         return dice_data
-    def get_player(self):
-        pass
     def set_player(self, players_name):
+        """set players
+
+        Args:
+            players_name (str): name of the player
+
+        Returns:
+            List<Player>: list of Players
+        """
         players = []
         for player_name in players_name:
             new_player = Player(player_name)
             players.append(new_player)
         return players
     def check_bankrupt(self):
-        pass
+        """check players balance to check bankrupt
+
+        Returns:
+            boolean: True if someone bankrupt
+        """
+        for player in self._players:
+            if player.get_balance()<0:
+                return True
+        return False
     def declare_winner(self):
         pass
     def play_turn(self):

@@ -42,3 +42,17 @@ class Player:
         """
         self._balance -= property._price
         self._owned_properties.append(property)
+    def get_balance(self):
+        """getter method of balance
+
+        Returns:
+            int: money the player has
+        """
+        return self._balance
+    def get_current_position(self):
+        """getter method of Player current position
+
+        Returns:
+            int: index of spaces on board
+        """
+        return self._current_position
