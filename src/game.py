@@ -34,4 +34,13 @@ class Game:
     def play_turn(self):
         pass
     def start_game(self):
-        pass
+        """ start the monopoly game
+        """
+        # start at Go
+        self._current_player = self._players[0]
+        self._current_turn = 0
+        # check anyone bankrupt
+        while self.check_bankrupt() is not True:
+            self.play_turn()
+            self._current_turn += 1
+            self._current_player= self._players[self._current_turn%4]
