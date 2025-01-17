@@ -38,6 +38,8 @@ class Game:
         """
         with open(dice_file_name) as file:
             dice_data = json.load(file)
+        if len(dice_data)<=0:
+            raise ValueError("dice data is empty.")
         return dice_data
     def set_player(self, players_name):
         """set players
@@ -85,6 +87,8 @@ class Game:
     def play_turn(self, steps):
         """ perform action in each turn
         """
+        if (steps<=0):
+            raise ValueError(f"Rolls {steps} is out of bounds.")
         # Roll the dice and reach new position
         pass_go = self._current_player.check_pass_go(steps, self._board.get_board_len())
         new_position = self._current_player.move(steps, self._board.get_board_len())

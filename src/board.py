@@ -33,6 +33,10 @@ class Board:
         Returns:
             Int: number of spaces on board
         """
+        if not self._positions:
+            raise ValueError("Board data is invalid.")
+        if len(self._positions)<=0:
+            raise ValueError(f"Board size: {len(self._positions)} is invalid")
         return len(self._positions)
     def get_property_set(self, colour):
         """Get same colour properties 
