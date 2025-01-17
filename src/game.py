@@ -22,7 +22,11 @@ class Game:
     def get_player(self):
         pass
     def set_player(self, players_name):
-        pass
+        players = []
+        for player_name in players_name:
+            new_player = Player(player_name)
+            players.append(new_player)
+        return players
     def check_bankrupt(self):
         pass
     def declare_winner(self):
