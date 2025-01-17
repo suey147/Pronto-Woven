@@ -88,12 +88,21 @@ def test_double_rent(game):
     game.play_turn(1)
     assert player._balance == 18  # Rent = 2x for full ownership
 # Turn
-def test_player_turn_roation(game):
+def test_player_turn_rotation(game):
     """Test correct turn rotation."""
-    game.play_turn(1)
-    assert game._current_player.name == "Billy"
-    game.play_turn(2)  # Billy's turn
-    assert game._current_player.name == "Charlotte"
+    expected_turn_order = ["Peter", "Billy", "Charlotte", "Sweedal"]
+    # Simulate 8 turns (2 full cycles of 4 players)
+    game._current_player = game._players[0]
+    for i in range(8):
+        current_player = game._current_player.name
+        expected_player = expected_turn_order[i % len(expected_turn_order)]
+        # Assert the current player is as expected
+        assert current_player == expected_player, f"Turn {i + 1}: Expected {expected_player}, but got {current_player}."
+        # Play the turn
+        game.play_turn(game._dice[game._current_turn])
+        # Move to the next player
+        game._current_turn += 1
+        game._current_player = game._players[game._current_turn % len(game._players)]
 def test_roll(game):
     """Test dice roll's impact on player movement."""
     player = game._players[0]
