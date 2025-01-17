@@ -3,8 +3,8 @@ from board import Board
 from player import Player
 
 class Game:
-    def __init__(self, board_file_name, dice_file_name) -> None:
-        self._players = self.set_player(["Peter", "Billy", "Charlotte", "Sweedal"])
+    def __init__(self, board_file_name, dice_file_name, players) -> None:
+        self._players = self.set_player(players)
         self._board = self.get_board(board_file_name)
         self._dice = self.get_dice(dice_file_name)
         self._current_player = None
@@ -73,11 +73,10 @@ class Game:
             if winner is None or winner.get_balance()<player.get_balance():
                 winner = player
         print("The Winner is "+ winner.name)
-    def play_turn(self):
+    def play_turn(self, steps):
         """ perform action in each turn
         """
         # Roll the dice and reach new position
-        steps = self._dice[self._current_turn]
         pass_go = self._current_player.check_pass_go(steps, self._board.get_board_len())
         new_position = self._current_player.move(steps, self._board.get_board_len())
         if pass_go:
@@ -120,7 +119,7 @@ class Game:
         self._current_turn = 0
         # check anyone bankrupt
         while self.check_bankrupt() is not True:
-            self.play_turn()
+            self.play_turn(self._dice[self._current_turn])
             self._current_turn += 1
             self._current_player= self._players[self._current_turn%4]
         self.declare_winner()
@@ -135,5 +134,5 @@ class Game:
                     f"Roll: {turn['roll']}, Position: {turn['position']}, "
                     f"Balance: ${turn['balance']}, Position: {turn['action']}\n"
                 )
-newGame = Game("./board.json", "./rolls_1.json")
+newGame = Game("./board.json", "./rolls_1.json", ["Peter", "Billy", "Charlotte", "Sweedal"])
 newGame.start_game()

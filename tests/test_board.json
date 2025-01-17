@@ -26,5 +26,29 @@
     "price": 2,
     "colour": "Red",
     "type": "property"
+  },
+  {
+    "name": "Betty's Burgers",
+    "price": 3,
+    "colour": "Green",
+    "type": "property"
+  },
+  {
+    "name": "YOMG",
+    "price": 3,
+    "colour": "Green",
+    "type": "property"
+  },
+  {
+    "name": "Gami Chicken",
+    "price": 4,
+    "colour": "Blue",
+    "type": "property"
+  },
+  {
+    "name": "Massizim",
+    "price": 4,
+    "colour": "Blue",
+    "type": "property"
   }
 ]
