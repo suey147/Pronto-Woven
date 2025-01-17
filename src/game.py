@@ -57,7 +57,7 @@ class Game:
             boolean: True if someone bankrupt
         """
         for player in self._players:
-            if player.get_balance()<0:
+            if player.get_balance()<=0:
                 return True
         return False
     def declare_winner(self):

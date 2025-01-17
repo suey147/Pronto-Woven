@@ -47,12 +47,12 @@ def test_passing_go(game):
     assert player._balance == 17  # +1 for passing GO
 def test_bankruptcy(game):
     """Test bankruptcy condition."""
-    game._current_player = game._players[0]
-    player = game._current_player
+    player = game._players[0]
+    game._current_player = player
     player._balance = 1
     game.play_turn(1)  # Assume rent owed > balance
-    assert player._balance < 0
-    assert game.check_bankrupt == True
+    assert player._balance <= 0
+    assert game.check_bankrupt() == True
 # Test property
 def test_rent_payment(game):
     """Test rent payment to property owner."""
