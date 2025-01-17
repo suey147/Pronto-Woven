@@ -78,7 +78,10 @@ class Game:
         """
         # Roll the dice and reach new position
         steps = self._dice[self._current_turn]
+        pass_go = self._current_player.check_pass_go(steps, self._board.get_board_len())
         new_position = self._current_player.move(steps, self._board.get_board_len())
+        if pass_go:
+            self._current_player.receive(1)
         landed_property = self._board.get_property(new_position)
         # Check if landed on Go
         if landed_property.type == "go":

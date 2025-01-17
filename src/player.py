@@ -15,11 +15,24 @@ class Player:
             int: new position
         """
         # check if pass go
-        if self._current_position+steps>=board_size:
+        if self.check_pass_go(steps, board_size):
             self._current_position = self._current_position+steps-board_size
         else:
             self._current_position += steps
         return self._current_position
+    def check_pass_go(self,  steps, board_size):
+        """check if the player pass go
+
+        Args:
+            steps (int): number of steps increased
+            board_size (int): total number of spaces on the board
+
+        Returns:
+            boolean: True if it pass go
+        """
+        if self._current_position+steps>=board_size:
+            return True
+        return False
     def pay(self, amount):
         """pay rent and update balance
 

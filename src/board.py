@@ -23,3 +23,24 @@ class Board:
             position (int): position index of the property on the board
         """
         return self._positions[position]
+    def get_board_len(self):
+        """Getter of board len
+
+        Returns:
+            Int: number of spaces on board
+        """
+        return len(self._positions)
+    def get_property_set(self, colour):
+        """Get same colour properties 
+
+        Args:
+            colour (string): Desired colour
+
+        Returns:
+            List<Property>: list of properties that have same colour
+        """
+        property_set = []
+        for position in self._positions:
+            if colour == position.get_colour():
+                property_set.append(position)
+        return property_set
