@@ -1,4 +1,5 @@
 import json
+import argparse
 from board import Board
 from player import Player
 
@@ -147,5 +148,16 @@ class Game:
                     f"Roll: {turn['roll']}, Position: {turn['position']}, "
                     f"Balance: ${turn['balance']}, Position: {turn['action']}\n"
                 )
-newGame = Game("./board.json", "./rolls_1.json", ["Peter", "Billy", "Charlotte", "Sweedal"])
-newGame.start_game()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Pronto Woven Monopoly Game")
+    parser.add_argument("board_file", type=str, help="Path to the board JSON file")
+    parser.add_argument("rolls_file", type=str, help="Path to the rolls JSON file")
+    args = parser.parse_args()
+
+    try:
+        # Initialize and play the game
+        players = ["Peter", "Billy", "Charlotte", "Sweedal"]
+        game = Game(args.board_file, args.rolls_file, players)
+        game.start_game()
+    except Exception as e:
+        print(f"Error: {e}")
