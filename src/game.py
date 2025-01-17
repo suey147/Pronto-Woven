@@ -32,7 +32,13 @@ class Game:
     def declare_winner(self):
         pass
     def play_turn(self):
-        pass
+        """ perform action in each turn
+        """
+        # Roll the dice and reach new position
+        steps = self._dice[self._current_turn]
+        new_position = self._current_player.move(steps, self._board.get_board_len())
+        landed_property = self._board.get_property(new_position)
+
     def start_game(self):
         """ start the monopoly game
         """
