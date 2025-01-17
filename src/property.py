@@ -8,10 +8,29 @@ class Property:
         self._index = index
         self._owner = None
     def is_owned(self):
-        pass
+        """ check if this property is owned
+        Returns:
+            boolean: True if is owned
+        """
+        return True if self._owner is not None else False
     def get_rent(self):
-        pass
+        """getter method of rent
+
+        Returns:
+            int: amount of rent
+        """
+        return self._rent
     def get_owner(self):
-        pass
+        """getter method of owner
+
+        Returns:
+            Player: player that owned the property
+        """
+        return self._owner
     def set_owner(self):
-        pass
+        """setter method of owner
+
+        Args:
+            player (Player): player that own the property
+        """
+        self._owner = player

@@ -38,6 +38,21 @@ class Game:
         steps = self._dice[self._current_turn]
         new_position = self._current_player.move(steps, self._board.get_board_len())
         landed_property = self._board.get_property(new_position)
+        # Check if landed on Go
+        if landed_property.type == "go":
+            return
+        # Check if the property has owner
+        elif landed_property.is_owned():
+            # tenant pay rent
+            rent = landed_property.get_rent()
+            # owner receive rent
+            owner = landed_property.get_owner()
+            owner.receive(rent)
+            self._current_player.pay(rent)
+        else:
+            # Buy property if not owned by anyone
+            self._current_player.buy_property(landed_property)
+            landed_property.set_owner(self._current_player)
 
     def start_game(self):
         """ start the monopoly game

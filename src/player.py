@@ -20,7 +20,25 @@ class Player:
         else:
             self._current_position += steps
         return self._current_position
-    def pay(self, amount, owner):
-        pass
+    def pay(self, amount):
+        """pay rent and update balance
+
+        Args:
+            amount (int): rent to be paid
+        """
+        self._balance -= amount
+    def receive(self, amount):
+        """receive rent and update balance
+
+        Args:
+            amount (int): amount to be received
+        """
+        self._balance += amount
     def buy_property(self, property):
-        pass
+        """pay to buy property. update balance and owned properties list
+
+        Args:
+            property (Property): property to be ourchased
+        """
+        self._balance -= property._price
+        self._owned_properties.append(property)
