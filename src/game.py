@@ -21,7 +21,10 @@ class Game:
         """
         with open(board_file_name) as file:
             board_data = json.load(file)
-        new_board = Board(board_data)
+        if len(board_data)>0:
+            new_board = Board(board_data)
+        else:
+            raise ValueError("Board data is invalid.")
         return new_board
 
     def get_dice(self, dice_file_name):

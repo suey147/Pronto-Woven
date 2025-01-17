@@ -1,4 +1,5 @@
 from game import Game
+from board import Board
 import pytest
 
 @pytest.fixture
@@ -147,14 +148,14 @@ def mock_dice():
 
 def test_invalid_json_files(mock_game):
     """Test behavior when the board data is invalid."""
-    mock_game._board = []
+    mock_game._board = Board([])
     with pytest.raises(ValueError, match="Board data is invalid."):
         mock_game._board.get_property(0)
 def test_empty_dice_rolls(mock_game):
     """Test behavior when dice rolls file is empty."""
     mock_game._dice = []
     with pytest.raises(ValueError, match="No dice rolls provided."):
-        mock_game.play_turn()
+        mock_game.play_turn(mock_game._dice[0])
 def test_invalid_dice(game):
     """Test invalid negative dice rolls."""
     game._dice = [-3, 2, 5]  # Replace dice rolls with invalid values

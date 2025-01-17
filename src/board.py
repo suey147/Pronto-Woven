@@ -22,6 +22,10 @@ class Board:
         Args:
             position (int): position index of the property on the board
         """
+        if not self._positions:
+            raise ValueError("Board data is invalid.")
+        if position < 0 or position >= len(self._positions):
+            raise IndexError(f"Position {position} is out of bounds. Board size: {len(self._positions)}")
         return self._positions[position]
     def get_board_len(self):
         """Getter of board len
