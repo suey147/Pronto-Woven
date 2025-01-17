@@ -1,9 +1,6 @@
+from game import Game
 import pytest
-import sys
-import os
-print("sys.path:", sys.path)
-print("Current directory:", os.getcwd())
-from src.game import Game
+
 @pytest.fixture
 def new_game():
     """Initialize game with test files
