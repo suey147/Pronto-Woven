@@ -1,5 +1,6 @@
 import json
 import argparse
+import os
 from board import Board
 from player import Player
 
@@ -20,13 +21,25 @@ class Game:
         Returns:
             list: list of property 
         """
-        with open(board_file_name) as file:
-            board_data = json.load(file)
-        if len(board_data)>0:
-            new_board = Board(board_data)
-        else:
-            raise ValueError("Board data is invalid.")
-        return new_board
+        try:
+            if not os.path.exists(board_file_name):
+                raise FileNotFoundError(f"Board file '{board_file_name}' does not exist.")
+            with open(board_file_name) as file:
+                board_data = json.load(file)
+            
+            # Validate board structure
+            for prop in board_data:
+                if not all(key in prop for key in ("name", "type")):
+                    raise ValueError(f"Invalid property structure in board file: {prop}")
+                
+            if len(board_data)>0:
+                new_board = Board(board_data)
+            else:
+                raise ValueError("Board data is invalid.")
+            
+            return new_board
+        except Exception as e:
+            raise ValueError(f"Error loading board file: {e}")
 
     def get_dice(self, dice_file_name):
         """Load the dice rolls from rolls.json
@@ -37,11 +50,20 @@ class Game:
         Returns:
             list: list of dice 
         """
-        with open(dice_file_name) as file:
-            dice_data = json.load(file)
-        if len(dice_data)<=0:
-            raise ValueError("dice data is empty.")
-        return dice_data
+        try:
+            if not os.path.exists(dice_file_name):
+                raise FileNotFoundError(f"Rolls file '{dice_file_name}' does not exist.")
+            
+            with open(dice_file_name) as file:
+                dice_data = json.load(file)
+            
+            # Validate rolls structure
+            if not isinstance(dice_data, list) or not all(isinstance(roll, int) for roll in dice_data):
+                raise ValueError("Rolls file must contain a list of integers.")
+            
+            return dice_data
+        except Exception as e:
+            raise ValueError(f"Error loading rolls file: {e}")
     def set_player(self, players_name):
         """set players
 
@@ -77,7 +99,6 @@ class Game:
     def declare_winner(self):
         """ Print out the winner and balance of all players
         """
-        winner = None
         print("Results")
         for player in self._players:
             # finish space that player on
@@ -139,6 +160,8 @@ class Game:
         self.declare_winner()
         self.records_turns()
     def records_turns(self):
+        """save the actions of each turns in txt 
+        """
         with open("records.txt", "w") as file:
             file.write("Game Turns:\n")
             file.write("-"*20+"\n")
