@@ -1,6 +1,6 @@
 import json
-from src.board import Board
-from src.player import Player
+from board import Board
+from player import Player
 
 class Game:
     def __init__(self, board_file_name, dice_file_name) -> None:
@@ -82,7 +82,7 @@ class Game:
         landed_property = self._board.get_property(new_position)
         # Check if landed on Go
         if landed_property.type == "go":
-            return
+            action = "Laned on GO"
         # Check if the property has owner
         elif landed_property.is_owned():
             # tenant pay rent
@@ -95,10 +95,20 @@ class Game:
                 rent *= 2
             owner.receive(rent)
             self._current_player.pay(rent)
+            action = f"{self._current_player.name} paid rent to {owner.name}"
         else:
             # Buy property if not owned by anyone
             self._current_player.buy_property(landed_property)
             landed_property.set_owner(self._current_player)
+            action = f"Bought {landed_property.name}"
+        # Record turn
+        self._turns.append({
+            "player": self._current_player.name,
+            "roll": steps,
+            "balance": self._current_player.get_balance(),
+            "position": landed_property.name,
+            "action": action
+        })
     def start_game(self):
         """ start the monopoly game
         """
@@ -110,5 +120,17 @@ class Game:
             self.play_turn()
             self._current_turn += 1
             self._current_player= self._players[self._current_turn%4]
+        self.declare_winner()
+        self.records_turns()
+    def records_turns(self):
+        with open("records.txt", "w") as file:
+            file.write("Game Turns:\n")
+            file.write("-"*20+"\n")
+            for i, turn in enumerate(self._turns):
+                file.write(
+                    f"Turn {i}: Player: {turn['player']}, "
+                    f"Roll: {turn['roll']}, Position: {turn['position']}, "
+                    f"Balance: ${turn['balance']}, Position: {turn['action']}\n"
+                )
 newGame = Game("./board.json", "./rolls_1.json")
 newGame.start_game()

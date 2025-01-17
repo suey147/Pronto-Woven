@@ -1,4 +1,4 @@
-from src.property import Property
+from property import Property
 
 class Board:
     """ Board class to represent the board layout
