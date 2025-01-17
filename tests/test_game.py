@@ -1,48 +1,53 @@
 import pytest
-from game import Game
-
+import sys
+import os
+print("sys.path:", sys.path)
+print("Current directory:", os.getcwd())
+from src.game import Game
 @pytest.fixture
-def game():
+def new_game():
     """Initialize game with test files
     """
-    return Game("test_board.json", "test_dice.json")
-
+    return Game("tests/test_board.json", "tests/test_rolls.json")
 # Test Game initialization
-def test_game_initialization(game):
+def test_game_initialization(new_game):
+    assert len(new_game._players) == 4
+    assert new_game._players[0].name == "Peter"
+    assert new_game._players[0]._balance == 16
+    assert new_game._board._positions[0].name == "GO"
+def test_board_load(new_game):
     pass
-def test_board_load(game):
+def test_dice_load(new_game):
     pass
-def test_dice_load(game):
-    pass
-def test_initial_game_state(game):
+def test_initial_game_state(new_game):
     pass
 # Test player
-def test_player_balance(game):
+def test_player_balance(new_game):
     pass
-def test_player_position(game):
+def test_player_position(new_game):
     pass
-def test_pass_go(game):
+def test_pass_go(new_game):
     pass
-def test_bankruptcy(game):
+def test_bankruptcy(new_game):
     pass
 # Test property
-def test_rent_payment(game):
+def test_rent_payment(new_game):
     pass
-def test_rent_receive(game):
+def test_rent_receive(new_game):
     pass
-def test_buy_property(game):
+def test_buy_property(new_game):
     pass
-def test_ownership(game):
+def test_ownership(new_game):
     pass
 # Turn
-def test_player_turn_roation(game):
+def test_player_turn_roation(new_game):
     pass
-def test_roll(game):
+def test_roll(new_game):
     pass
 # Winning Condition
-def test_bankruptcy(game):
+def test_bankruptcy(new_game):
     pass
-def test_tie_breaker(game):
+def test_tie_breaker(new_game):
     pass
 # Edge Cases
 def invalid_json_files(game):
