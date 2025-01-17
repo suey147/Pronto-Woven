@@ -27,10 +27,18 @@ class Property:
             Player: player that owned the property
         """
         return self._owner
-    def set_owner(self):
+    def set_owner(self, player):
         """setter method of owner
 
         Args:
             player (Player): player that own the property
         """
         self._owner = player
+    def get_colour(self):
+        """getter method of colour
+
+        Returns:
+            str: colour of the property
+        """
+        return self._color
+    

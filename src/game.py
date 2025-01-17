@@ -89,6 +89,10 @@ class Game:
             rent = landed_property.get_rent()
             # owner receive rent
             owner = landed_property.get_owner()
+            # check if the owner own all property of same colour
+            property_set = self._board.get_property_set(landed_property.get_colour())
+            if all(p.get_owner() == owner for p in property_set):
+                rent *= 2
             owner.receive(rent)
             self._current_player.pay(rent)
         else:
