@@ -109,7 +109,13 @@ class Game:
         print("The Winner is "+ ''.join(self.determine_winner()))
         print("Details of each turns has saved at records.txt")
     def play_turn(self, steps):
-        """ perform action in each turn
+        """perform action in each turn
+
+        Args:
+            steps (int): number of rolls
+
+        Raises:
+            ValueError: invalide number of steps
         """
         if (steps<=0):
             raise ValueError(f"Rolls {steps} is out of bounds.")
