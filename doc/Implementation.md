@@ -17,7 +17,7 @@ woven_monopoly/
 ```
 
 ## Key Modules and Functions
-A class diagrams can be found [here][doc/Architecture.pdf].
+A class diagrams can be found [here](doc/Architecture.pdf).
 ### Game
 Manages the overall game flow. Manages the board, players, dice rolls, game actions, and determines the winner.
 ### Player
