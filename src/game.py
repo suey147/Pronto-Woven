@@ -6,7 +6,18 @@ from player import Player
 from actions import Actions
 
 class Game:
+    """
+    Represents a Monopoly game. Manages the board, players, dice rolls, game actions, and determines the winner.
+    """
     def __init__(self, board_file_name, dice_file_name, players) -> None:
+        """
+        Initializes the game with the provided board layout, dice rolls, and players.
+        
+        Args:
+            board_file_name (str): The file name containing the board layout (e.g., 'board.json').
+            dice_file_name (str): The file name containing the dice roll values (e.g., 'rolls.json').
+            players (list): A list of player names to be included in the game.
+        """
         self._players = self.set_player(players)
         self._board = self.get_board(board_file_name)
         self._dice = self.get_dice(dice_file_name)
@@ -15,13 +26,18 @@ class Game:
         self._turns = []
         self._game_actions = Actions()
     def get_board(self, board_file_name):
-        """Load the board layout from board.json
+        """
+        Loads the board layout from the specified JSON file and validates its structure.
         
         Args:
-            board_file_name (str): name of the board layout file
-
+            board_file_name (str): The file name containing the board layout (e.g., 'board.json').
+        
         Returns:
-            list: list of property 
+            Board: A Board object representing the game board.
+        
+        Raises:
+            FileNotFoundError: If the board file does not exist.
+            ValueError: If the board file contains invalid data or structure.
         """
         try:
             if not os.path.exists(board_file_name):
@@ -44,13 +60,18 @@ class Game:
             raise ValueError(f"Error loading board file: {e}")
 
     def get_dice(self, dice_file_name):
-        """Load the dice rolls from rolls.json
-
+        """
+        Loads the dice rolls from the specified JSON file and validates its structure.
+        
         Args:
-            dice_file_name (str): name of the rolls file
-
+            dice_file_name (str): The file name containing the dice roll values (e.g., 'rolls.json').
+        
         Returns:
-            list: list of dice 
+            list: A list of integers representing the dice rolls for each turn.
+        
+        Raises:
+            FileNotFoundError: If the dice file does not exist.
+            ValueError: If the dice file is not structured correctly.
         """
         try:
             if not os.path.exists(dice_file_name):
@@ -67,13 +88,14 @@ class Game:
         except Exception as e:
             raise ValueError(f"Error loading rolls file: {e}")
     def set_player(self, players_name):
-        """set players
-
+        """
+        Initializes players from the provided list of player names.
+        
         Args:
-            players_name (str): name of the player
-
+            players_name (list): A list of player names (strings).
+        
         Returns:
-            List<Player>: list of Players
+            list[Player]: A list of Player instances created from the provided names.
         """
         players = []
         for player_name in players_name:
@@ -81,17 +103,23 @@ class Game:
             players.append(new_player)
         return players
     def check_bankrupt(self):
-        """check players balance to check bankrupt
-
+        """
+        Checks if any player is bankrupt (balance is less than or equal to zero).
+        
         Returns:
-            boolean: True if someone bankrupt
+            bool: True if any player is bankrupt, otherwise False.
         """
         for player in self._players:
             if player.get_balance()<=0:
                 return True
         return False
     def determine_winner(self):
-        """Determine the winners with the highest balance."""
+        """
+        Determines the winner(s) based on the highest balance among the players.
+        
+        Returns:
+            list[str]: A list of player names who have the highest balance.
+        """
         # Find the maximum balance among players
         max_balance = max(player.get_balance() for player in self._players)
         # Find all players with the maximum balance
@@ -99,7 +127,9 @@ class Game:
         return winners
 
     def declare_winner(self):
-        """ Print out the winner and balance of all players
+        """
+        Declares the winner(s) and prints the final balance and properties owned by each player.
+        It also writes the game records to a file.
         """
         print("Results \n")
         print("-"*40+"\n")
@@ -111,31 +141,30 @@ class Game:
         print("The Winner is "+ ''.join(self.determine_winner()))
         print("Details of each turns has saved at records.txt")
     def play_turn(self, steps):
-        """perform action in each turn
-
+        """
+        Simulates a player's turn, including rolling the dice, moving, paying rent, and potentially buying a property.
+        
         Args:
-            steps (int): number of rolls
-
+            steps (int): The number of steps the player moves based on the dice roll.
+        
         Raises:
-            ValueError: invalide number of steps
+            ValueError: If the number of steps is invalid (less than or equal to zero).
         """
         if (steps<=0):
             raise ValueError(f"Rolls {steps} is out of bounds.")
-        # Roll the dice and reach new position
+        # Prepare the action message
         action = f"\n{self._current_player.name}'s turn! Rolling dice: {steps} \n"
         player = self._current_player
-
         previous_position = player.get_current_position()
         action += self._game_actions.pass_go(player, steps, self._board.get_board_len())
-        
         new_position = player.move(steps, self._board.get_board_len())
         landed_property = self._board.get_property(new_position)
         action += f"{player.name} moves from {previous_position} to {new_position} ({landed_property.name})\n"
-
+        # Perform actions based on the property type
         if landed_property.type != "go":
             action += self._game_actions.rent(player, landed_property, self._board)
             action += self._game_actions.buy_property(player, landed_property)
-        
+            # add more actions if needed
         # Record turn
         self._turns.append({
             "player": self._current_player.name,
@@ -145,12 +174,14 @@ class Game:
             "action": action
         })
     def start_game(self):
-        """ start the monopoly game
+        """
+        Starts the game by initializing the first player and looping through turns until a player is bankrupt.
+        Once the game is over, it declares the winner and records the turn details.
         """
         # start at Go
         self._current_player = self._players[0]
         self._current_turn = 0
-        # check anyone bankrupt
+        # Loop through turns until a player is bankrupt
         while self.check_bankrupt() is not True:
             self.play_turn(self._dice[self._current_turn])
             self._current_turn += 1
@@ -158,7 +189,11 @@ class Game:
         self.declare_winner()
         self.records_turns()
     def records_turns(self):
-        """save the actions of each turns in txt 
+        """
+        Saves the details of each turn (including player actions, rolls, and balances) to a text file.
+        
+        Returns:
+            None
         """
         with open("records.txt", "w") as file:
             file.write("Game Turns:\n")
