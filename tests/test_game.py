@@ -45,7 +45,7 @@ def test_passing_go(game):
     player._current_position = 8  # Assume board has 9 positions
     game.play_turn(1)
     assert player._current_position == 0  # Board wraps back to Go
-    assert player._balance == 17  # +1 for passing GO
+    assert player.get_balance() == 17  # +1 for passing GO
 def test_bankruptcy(game):
     """Test bankruptcy condition."""
     player = game._players[0]

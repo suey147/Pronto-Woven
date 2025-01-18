@@ -128,3 +128,6 @@ The primary goal of this project is to create a simplified version of Monopoly t
 * Add a graphical interface to improve user experience.
 * Enhance error messages with suggestions for fixing issues.
 * Introduce configurable rules for custom games.
+
+## Assumptions
+* Rent and cost of property is the same

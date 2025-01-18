@@ -3,6 +3,7 @@ import argparse
 import os
 from board import Board
 from player import Player
+from actions import Actions
 
 class Game:
     def __init__(self, board_file_name, dice_file_name, players) -> None:
@@ -12,6 +13,7 @@ class Game:
         self._current_player = None
         self._current_turn = 0
         self._turns = []
+        self._game_actions = Actions()
     def get_board(self, board_file_name):
         """Load the board layout from board.json
         
@@ -122,38 +124,18 @@ class Game:
         # Roll the dice and reach new position
         action = f"\n{self._current_player.name}'s turn! Rolling dice: {steps} \n"
         player = self._current_player
-        pass_go = player.check_pass_go(steps, self._board.get_board_len())
+
         previous_position = player.get_current_position()
+        action += self._game_actions.pass_go(player, steps, self._board.get_board_len())
+        
         new_position = player.move(steps, self._board.get_board_len())
         landed_property = self._board.get_property(new_position)
         action += f"{player.name} moves from {previous_position} to {new_position} ({landed_property.name})\n"
-        # Get $1 if pass Go
-        if pass_go:
-            player.receive(1)
-            action += f"{player.name} passes GO and earns $1! New balance: ${player.get_balance()}\n"
-        # Check if landed on Go
-        if landed_property.type == "go":
-            return
-        # Check if the property has owner
-        elif landed_property.is_owned():
-            # tenant pay rent
-            rent = landed_property.get_rent()
-            # owner receive rent
-            owner = landed_property.get_owner()
-            # check if the owner own all property of same colour
-            property_set = self._board.get_property_set(landed_property.get_colour())
-            if all(p.get_owner() == owner for p in property_set):
-                rent *= 2
-            owner.receive(rent)
-            player.pay(rent)
-            action += f"{player.name} pays ${rent} rent to {owner.name} for landing on {landed_property.name}.\n"
-            action += f"{player.name}'s new balance: ${player.get_balance()}\n"
-            action += f"{owner.name}'s new balance: ${owner.get_balance()}\n"
-        else:
-            # Buy property if not owned by anyone
-            player.buy_property(landed_property)
-            landed_property.set_owner(self._current_player)
-            action += f"{player.name} buys {landed_property.name} for ${landed_property.get_price()}. Remaining balance: ${player.get_balance()}\n"
+
+        if landed_property.type != "go":
+            action += self._game_actions.rent(player, landed_property, self._board)
+            action += self._game_actions.buy_property(player, landed_property)
+        
         # Record turn
         self._turns.append({
             "player": self._current_player.name,
