@@ -1,0 +1,146 @@
+Game Turns:
+--------------------
+Turn 0: Player: Peter, Roll: 5, Position: Betty's Burgers, Balance: $13, Position: 
+Peter's turn! Rolling dice: 5 
+Peter moves from 0 to 5 (Betty's Burgers)
+Peter buys Betty's Burgers for $3.
+Turn 1: Player: Billy, Roll: 2, Position: Fast Kebabs, Balance: $15, Position: 
+Billy's turn! Rolling dice: 2 
+Billy moves from 0 to 2 (Fast Kebabs)
+Billy buys Fast Kebabs for $1.
+Turn 2: Player: Charlotte, Roll: 2, Position: Fast Kebabs, Balance: $15, Position: 
+Charlotte's turn! Rolling dice: 2 
+Charlotte moves from 0 to 2 (Fast Kebabs)
+Charlotte pays $1 rent to Billy.
+Turn 3: Player: Sweedal, Roll: 1, Position: The Burvale, Balance: $15, Position: 
+Sweedal's turn! Rolling dice: 1 
+Sweedal moves from 0 to 1 (The Burvale)
+Sweedal buys The Burvale for $1.
+Turn 4: Player: Peter, Roll: 4, Position: GO, Balance: $14, Position: 
+Peter's turn! Rolling dice: 4 
+Peter passes GO and earns $1!Peter moves from 5 to 0 (GO)
+
+Turn 5: Player: Billy, Roll: 1, Position: The Grand Tofu, Balance: $14, Position: 
+Billy's turn! Rolling dice: 1 
+Billy moves from 2 to 3 (The Grand Tofu)
+Billy buys The Grand Tofu for $2.
+Turn 6: Player: Charlotte, Roll: 2, Position: Lanzhou Beef Noodle, Balance: $13, Position: 
+Charlotte's turn! Rolling dice: 2 
+Charlotte moves from 2 to 4 (Lanzhou Beef Noodle)
+Charlotte buys Lanzhou Beef Noodle for $2.
+Turn 7: Player: Sweedal, Roll: 1, Position: Fast Kebabs, Balance: $14, Position: 
+Sweedal's turn! Rolling dice: 1 
+Sweedal moves from 1 to 2 (Fast Kebabs)
+Sweedal pays $1 rent to Billy.
+Turn 8: Player: Peter, Roll: 3, Position: The Grand Tofu, Balance: $12, Position: 
+Peter's turn! Rolling dice: 3 
+Peter moves from 0 to 3 (The Grand Tofu)
+Peter pays $2 rent to Billy.
+Turn 9: Player: Billy, Roll: 1, Position: Lanzhou Beef Noodle, Balance: $15, Position: 
+Billy's turn! Rolling dice: 1 
+Billy moves from 3 to 4 (Lanzhou Beef Noodle)
+Billy pays $2 rent to Charlotte.
+Turn 10: Player: Charlotte, Roll: 4, Position: Massizim, Balance: $11, Position: 
+Charlotte's turn! Rolling dice: 4 
+Charlotte moves from 4 to 8 (Massizim)
+Charlotte buys Massizim for $4.
+Turn 11: Player: Sweedal, Roll: 3, Position: Betty's Burgers, Balance: $11, Position: 
+Sweedal's turn! Rolling dice: 3 
+Sweedal moves from 2 to 5 (Betty's Burgers)
+Sweedal pays $3 rent to Peter.
+Turn 12: Player: Peter, Roll: 5, Position: Massizim, Balance: $11, Position: 
+Peter's turn! Rolling dice: 5 
+Peter moves from 3 to 8 (Massizim)
+Peter pays $4 rent to Charlotte.
+Turn 13: Player: Billy, Roll: 2, Position: YOMG, Balance: $12, Position: 
+Billy's turn! Rolling dice: 2 
+Billy moves from 4 to 6 (YOMG)
+Billy buys YOMG for $3.
+Turn 14: Player: Charlotte, Roll: 3, Position: Fast Kebabs, Balance: $15, Position: 
+Charlotte's turn! Rolling dice: 3 
+Charlotte passes GO and earns $1!Charlotte moves from 8 to 2 (Fast Kebabs)
+Charlotte pays $1 rent to Billy.
+Turn 15: Player: Sweedal, Roll: 1, Position: YOMG, Balance: $8, Position: 
+Sweedal's turn! Rolling dice: 1 
+Sweedal moves from 5 to 6 (YOMG)
+Sweedal pays $3 rent to Billy.
+Turn 16: Player: Peter, Roll: 3, Position: Fast Kebabs, Balance: $11, Position: 
+Peter's turn! Rolling dice: 3 
+Peter passes GO and earns $1!Peter moves from 8 to 2 (Fast Kebabs)
+Peter pays $1 rent to Billy.
+Turn 17: Player: Billy, Roll: 1, Position: Gami Chicken, Balance: $13, Position: 
+Billy's turn! Rolling dice: 1 
+Billy moves from 6 to 7 (Gami Chicken)
+Billy buys Gami Chicken for $4.
+Turn 18: Player: Charlotte, Roll: 1, Position: The Grand Tofu, Balance: $13, Position: 
+Charlotte's turn! Rolling dice: 1 
+Charlotte moves from 2 to 3 (The Grand Tofu)
+Charlotte pays $2 rent to Billy.
+Turn 19: Player: Sweedal, Roll: 3, Position: GO, Balance: $9, Position: 
+Sweedal's turn! Rolling dice: 3 
+Sweedal passes GO and earns $1!Sweedal moves from 6 to 0 (GO)
+
+Turn 20: Player: Peter, Roll: 4, Position: YOMG, Balance: $8, Position: 
+Peter's turn! Rolling dice: 4 
+Peter moves from 2 to 6 (YOMG)
+Peter pays $3 rent to Billy.
+Turn 21: Player: Billy, Roll: 2, Position: GO, Balance: $19, Position: 
+Billy's turn! Rolling dice: 2 
+Billy passes GO and earns $1!Billy moves from 7 to 0 (GO)
+
+Turn 22: Player: Charlotte, Roll: 1, Position: Lanzhou Beef Noodle, Balance: $13, Position: 
+Charlotte's turn! Rolling dice: 1 
+Charlotte moves from 3 to 4 (Lanzhou Beef Noodle)
+Charlotte pays $2 rent to Charlotte.
+Turn 23: Player: Sweedal, Roll: 3, Position: The Grand Tofu, Balance: $7, Position: 
+Sweedal's turn! Rolling dice: 3 
+Sweedal moves from 0 to 3 (The Grand Tofu)
+Sweedal pays $2 rent to Billy.
+Turn 24: Player: Peter, Roll: 2, Position: Massizim, Balance: $4, Position: 
+Peter's turn! Rolling dice: 2 
+Peter moves from 6 to 8 (Massizim)
+Peter pays $4 rent to Charlotte.
+Turn 25: Player: Billy, Roll: 3, Position: The Grand Tofu, Balance: $21, Position: 
+Billy's turn! Rolling dice: 3 
+Billy moves from 0 to 3 (The Grand Tofu)
+Billy pays $2 rent to Billy.
+Turn 26: Player: Charlotte, Roll: 5, Position: GO, Balance: $18, Position: 
+Charlotte's turn! Rolling dice: 5 
+Charlotte passes GO and earns $1!Charlotte moves from 4 to 0 (GO)
+
+Turn 27: Player: Sweedal, Roll: 5, Position: Massizim, Balance: $3, Position: 
+Sweedal's turn! Rolling dice: 5 
+Sweedal moves from 3 to 8 (Massizim)
+Sweedal pays $4 rent to Charlotte.
+Turn 28: Player: Peter, Roll: 3, Position: Fast Kebabs, Balance: $4, Position: 
+Peter's turn! Rolling dice: 3 
+Peter passes GO and earns $1!Peter moves from 8 to 2 (Fast Kebabs)
+Peter pays $1 rent to Billy.
+Turn 29: Player: Billy, Roll: 2, Position: Betty's Burgers, Balance: $19, Position: 
+Billy's turn! Rolling dice: 2 
+Billy moves from 3 to 5 (Betty's Burgers)
+Billy pays $3 rent to Peter.
+Turn 30: Player: Charlotte, Roll: 4, Position: Lanzhou Beef Noodle, Balance: $22, Position: 
+Charlotte's turn! Rolling dice: 4 
+Charlotte moves from 0 to 4 (Lanzhou Beef Noodle)
+Charlotte pays $2 rent to Charlotte.
+Turn 31: Player: Sweedal, Roll: 5, Position: Lanzhou Beef Noodle, Balance: $2, Position: 
+Sweedal's turn! Rolling dice: 5 
+Sweedal passes GO and earns $1!Sweedal moves from 8 to 4 (Lanzhou Beef Noodle)
+Sweedal pays $2 rent to Charlotte.
+Turn 32: Player: Peter, Roll: 2, Position: Lanzhou Beef Noodle, Balance: $5, Position: 
+Peter's turn! Rolling dice: 2 
+Peter moves from 2 to 4 (Lanzhou Beef Noodle)
+Peter pays $2 rent to Charlotte.
+Turn 33: Player: Billy, Roll: 6, Position: Fast Kebabs, Balance: $20, Position: 
+Billy's turn! Rolling dice: 6 
+Billy passes GO and earns $1!Billy moves from 5 to 2 (Fast Kebabs)
+Billy pays $1 rent to Billy.
+Turn 34: Player: Charlotte, Roll: 5, Position: GO, Balance: $27, Position: 
+Charlotte's turn! Rolling dice: 5 
+Charlotte passes GO and earns $1!Charlotte moves from 4 to 0 (GO)
+
+Turn 35: Player: Sweedal, Roll: 4, Position: Massizim, Balance: $-2, Position: 
+Sweedal's turn! Rolling dice: 4 
+Sweedal moves from 4 to 8 (Massizim)
+Sweedal pays $4 rent to Charlotte.

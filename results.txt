@@ -1,0 +1,28 @@
+Results for rolls_1
+----------------------------------------
+
+Peter end up with: $40 at Massizim
+
+Billy end up with: $14 at GO
+
+Charlotte end up with: $-1 at Gami Chicken
+
+Sweedal end up with: $1 at Gami Chicken
+
+The Winner is Peter
+Details of each turns has saved at records_1.txt
+
+
+Results for rolls_2
+----------------------------------------
+
+Peter end up with: $5 at Lanzhou Beef Noodle
+
+Billy end up with: $20 at Fast Kebabs
+
+Charlotte end up with: $31 at GO
+
+Sweedal end up with: $-2 at Massizim
+
+The Winner is Charlotte
+Details of each turns has saved at records_2.txt

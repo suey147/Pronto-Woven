@@ -195,7 +195,7 @@ class Game:
         Returns:
             None
         """
-        with open("records.txt", "w") as file:
+        with open("./records/records.txt", "w") as file:
             file.write("Game Turns:\n")
             file.write("-"*20+"\n")
             for i, turn in enumerate(self._turns):

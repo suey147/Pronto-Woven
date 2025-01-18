@@ -6,14 +6,17 @@ woven_monopoly/
 |-- doc                            # Documentations
 |-- src/
     |-- game.py                    # Main script to run the game
-    |-- board.json                 # 
-    |-- rolls.json                 # 
-    |-- property.json              # 
+    |-- board.py                 
+    |-- rolls.py                 
+    |-- property.py
+    |-- actions.py               
 |-- tests/
     |-- test_game.py               # Unit and integration tests
-|-- board.json                     # JSON file defining the game bo ard
-|-- rolls_1.json                   # JSON file defining dice rolls 1
-|-- rolls_2.json                   # JSON file defining dice rolls 2
+|-- board
+    |-- board.json                     # JSON file defining the game board
+|-- rolls
+    |-- rolls_1.json                   # JSON file defining dice rolls 1
+    |-- rolls_2.json                   # JSON file defining dice rolls 2
 ```
 
 ## Key Modules and Functions
@@ -128,6 +131,3 @@ The primary goal of this project is to create a simplified version of Monopoly t
 * Add a graphical interface to improve user experience.
 * Enhance error messages with suggestions for fixing issues.
 * Introduce configurable rules for custom games.
-
-## Assumptions
-* Rent and cost of property is the same

@@ -13,9 +13,15 @@ git clone https://github.com/suey147/Pronto-Woven.git
 ```
 3. Run the game
 ```
-python .\src\game.py .\board.json .\rolls_1.json
+python .\src\game.py .\board\board.json .\rolls\rolls_1.json
 ```
 You can modify the board layout by providing a new board JSON or new rolls with a new rolls JSON. Simply replace the file with your file path.
+
+## Assumptions
+* Rent and cost of property is the same
+
+## Documentations
+* implementation documents and git commit history can be found in ./doc
 
 ## Environment Configuration
 * Ensure `board.json` and `rolls.json` are placed in the root directory
